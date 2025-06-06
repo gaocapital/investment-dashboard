@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>GAO Trading Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg:        #000;   /* pure black */
+            --panel:     #111;   /* slightly lighter for cards */
+            --accent:    #08d;   /* cyan accent */
+            --text:      #eee;   /* main font colour */
+            --subtext:   #aaa;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        h1, h2 {
+            margin: 0;
+            font-weight: 700;
+            text-align: center;
+        }
+        h1 { padding: 35px 0 15px; font-size: 3.6rem; letter-spacing: 1px; }
+        h2 { font-size: 1.8rem; color: var(--text); }
+
+        .model-card {
+            background: var(--panel);
+            border: 1px solid #222;
+            border-radius: 8px;
+            margin: 40px auto;
+            padding: 25px 20px 35px;
+            width: 94%;
+            max-width: 1400px;
+            box-shadow: 0 0 12px rgba(0,0,0,.6);
+        }
+
+        /* give Plotly charts a little breathing-room */
+        .plot-wrapper {
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        /* small footer */
+        footer {
+            color: var(--subtext);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 25px 0 35px;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* make mobile look decent */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.2rem; }
+            .model-card { padding: 18px 12px 28px; }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GAO Trading Dashboard</h1>
+
+    {% for model, info in latest_outputs.items() %}
+        <section class="model-card">
+            <h2>{{ info['display_name'] }}</h2>
+
+            <div class="plot-wrapper">
+                {{ info['plot']|safe }}
+            </div>
+        </section>
+    {% endfor %}
+
+    <footer>
+        Built by Royce Lim — © 2025 GAO Capital
+    </footer>
+</body>
+</html>
