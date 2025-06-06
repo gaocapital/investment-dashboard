@@ -17,7 +17,7 @@ The dashboard is designed for:
 
 ## 🧠 How It Works
 
-Each strategy (Rates, Commodities, etc.) has a Python script that:
+Each strategy (e.g. spx_barometer) has a Python script that:
 - Reads the corresponding .xlsx file from the data/ folder.
 - Parses, processes, and computes metrics.
 - Feeds this data to the Flask app.
@@ -37,6 +37,7 @@ Flask renders all output in a web-based dashboard, refreshing regularly based on
 
 ## 📂 Project Structure
 
+```text
 investment-dashboard-main/
 │
 ├── main.py # Run this script
@@ -57,6 +58,7 @@ investment-dashboard-main/
 │ └── ... # Add future data here
 ├── requirements.txt # Python dependencies
 └── LICENSE.txt # MIT license
+```
 
 ---
 
@@ -102,6 +104,9 @@ MODEL_REGISTRY = {
 ```
 
 After this step, run the dashboard again and your model's plot will be displayed on the webapp.
+
+**4. Update /descriptions and requirements.txt**
+Create a markdown file in `/descriptions` to discuss the logic and results of your mode. Also, if any new libraries were used in your model, update `requirements.txt` accordingly.
 
 ---
 
