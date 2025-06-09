@@ -123,10 +123,10 @@ The main dashboard layout is in templates/dashboard.html. You can edit the styl 
 
 ---
 
-## 👨‍💼 Maintainer
+## 👨‍💼 Developer
 
-Royce Lim
-Associate, GAO Capital
+Royce Lim <br>
+Associate, GAO Capital <br>
 Contact: associates@gao-cap.com / royce@gao-adv.com
 
 ---
