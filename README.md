@@ -17,7 +17,7 @@ The dashboard is designed for:
 
 ## 🧠 How It Works
 
-Each strategy (Rates, Commodities, etc.) has a Python script that:
+Each strategy (e.g. spx_barometer) has a Python script that:
 - Reads the corresponding .xlsx file from the data/ folder.
 - Parses, processes, and computes metrics.
 - Feeds this data to the Flask app.
@@ -37,6 +37,7 @@ Flask renders all output in a web-based dashboard, refreshing regularly based on
 
 ## 📂 Project Structure
 
+```text
 investment-dashboard-main/
 │
 ├── main.py # Run this script
@@ -57,6 +58,7 @@ investment-dashboard-main/
 │ └── ... # Add future data here
 ├── requirements.txt # Python dependencies
 └── LICENSE.txt # MIT license
+```
 
 ---
 
@@ -78,7 +80,7 @@ Open your browser and navigate to [http://192.168.10.88:5000/], where you’ll s
 To integrate a new strategy (e.g. Tactical Trading), follow these steps:
 
 **1. Create a New Data File**
-Save your Bloomberg/BQL file as an Excel file with the model name (e.g. tactical_trading.xlsx) and place it in the /data directory. It should contain live BQL prompts such that data can be drawn from Bloomberg at regular intervals.
+Save your Bloomberg/BQL file as an Excel file with the model name (e.g. tactical_trading.xlsx) and place it in the /data directory. It should contain live BQL prompts such that data can be drawn from Bloomberg at regular intervals. This will be read into a dictionary with each sheet's name as the key and the DataFrame as the value.
 
 **2. Create a Model Script**
 In /models, create your Python model (e.g. tactical_trading.py) which requires the following methods:
@@ -102,6 +104,9 @@ MODEL_REGISTRY = {
 ```
 
 After this step, run the dashboard again and your model's plot will be displayed on the webapp.
+
+**4. Update /descriptions and requirements.txt**
+Create a markdown file in `/descriptions` to discuss the logic and results of your mode. Also, if any new libraries were used in your model, update `requirements.txt` accordingly.
 
 ---
 
@@ -128,5 +133,8 @@ Contact: associates@gao-cap.com / royce@gao-adv.com
 
 ## 📄 License
 
-This project is licensed under the [MIT License](./LICENSE.txt).
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
 
+You are free to use, modify, and distribute the code for **non-commercial purposes only**, with appropriate credit to the author.
+
+© 2025 GAO Capital

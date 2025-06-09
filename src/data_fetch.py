@@ -31,9 +31,10 @@ def fetch_data(file_name):
     wb.Save()
 
     # Assuming the first sheet contains the data
-    sheet = wb.Sheets(1)
+    sheet_names = [sheet.Name for sheet in wb.Sheets]
+    
     # Read the data from the first sheet into a pandas DataFrame
-    data = pd.read_excel(file_path_str, sheet_name=sheet.Name)
+    data = pd.read_excel(file_path_str, sheet_name=sheet_names)
 
     # Close the workbook and quit the Excel application
     wb.Close()

@@ -75,7 +75,7 @@ def fix_na_date(df: pd.DataFrame) -> pd.DataFrame:
 # ─────────────────────────────────────────────────────────────────────────────
 def process_spx_barometer(data, lookback=30):
     # Reverse the order (assuming data is oldest to newest)
-    cleaned_data = data.ffill().iloc[::-1]
+    cleaned_data = data["main"].ffill().iloc[::-1]
 
     # Fix NA date issue
     cleaned_data = fix_na_date(cleaned_data)

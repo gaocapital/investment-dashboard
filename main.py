@@ -30,12 +30,12 @@ def run_all_models() -> None:
     new_dict: dict[str, dict] = {}
 
     for key, info in MODEL_REGISTRY.items():
-        df = fetch_data(info["file"])
-        if df is None or df.empty:
+        data_dict = fetch_data(info["file"])
+        if not data_dict:
             print(f"⚠ {info['display_name']} returned no data")
             continue
 
-        processed = info["processor"](df)
+        processed = info["processor"](data_dict)
         print(processed)
         html_plot = info["plotter"](processed)
 
