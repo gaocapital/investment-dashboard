@@ -29,19 +29,18 @@ def run_all_models() -> None:
     global latest_outputs
     new_dict: dict[str, dict] = {}
 
-    for key, info in MODEL_REGISTRY.items():
+    for key, info in MODEL_REGISTRY.items(): 
         data_dict = fetch_data(info["file"])
         if not data_dict:
             print(f"⚠ {info['display_name']} returned no data")
             continue
 
-        processed = info["processor"](data_dict)
-        print(processed)
-        html_plot = info["plotter"](processed)
+        processed_dict = info["processor"](data_dict)
+        html_plot = info["plotter"](processed_dict)
 
         new_dict[key] = {
             "display_name": info["display_name"],
-            "data": processed,
+            "data": processed_dict,
             "plot": html_plot,
         }
 

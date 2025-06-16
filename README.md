@@ -84,8 +84,8 @@ Save your Bloomberg/BQL file as an Excel file with the model name (e.g. tactical
 
 **2. Create a Model Script**
 In /models, create your Python model (e.g. tactical_trading.py) which requires the following methods:
-A. `process_tactical_trading(raw_df)`: Processes the raw data from the BQL Excel file and outputs the processed data to be displayed.
-B. `plot_tactical_trading(processed_df)`: Creates the plot(s) to visualise the processed data using Plotly and outputs the plots as a html object
+A. `process_tactical_trading(data_dict)`: Processes the raw data from the BQL Excel file (stored as a dictionary of sheets) and outputs the processed data to be displayed.
+B. `plot_tactical_trading(processed_dict)`: Creates the plot(s) to visualise the processed data dictionary using Plotly and outputs the plots as a html object
 
 **3. Import model into main.py**
 In main.py, import your new model and add it to the `MODEL_RESGISTRY` dictionary:
@@ -115,8 +115,35 @@ The main dashboard layout is in templates/dashboard.html. You can edit the styl 
 
 ---
 
+## 🛠️ Troubleshooting
+
+Here are common issues and steps to resolve them when working with the dashboard:
+
+### ❗ Excel Parsing Fails or Data Doesn’t Load
+
+If the dashboard shows missing data or errors during parsing:
+- ✅ **Manually open all `.xlsx` files in the `/data` directory** once before running the dashboard.
+  - Bloomberg BQL-linked Excel files may not auto-refresh unless they've been opened in Excel at least once during the session.
+  - Opening the file triggers Excel to recalculate and populate BQL formulas, ensuring correct parsing.
+
+### ⚠️ `#NAME?` Error in Excel Cells
+
+This usually indicates Bloomberg formulas are not functioning properly. To fix:
+1. 🛑 Search for and run the script **"Stop API Process"** from your Windows Start menu.
+   - This will terminate any stuck Bloomberg Excel sessions.
+2. ✅ Reopen the Excel file and confirm that formulas resolve correctly.
+3. 🔁 Restart the dashboard (`python main.py`) after verifying Excel is producing live values.
+
+If issues persist, ensure:
+- Bloomberg Terminal is open and logged in.
+- The Excel plugin is properly installed and not disabled.
+- Macros and external connections are enabled.
+
+---
+
 ## 📅 Roadmap
 
+- Debugging Excel data parsing
 - Live web implementation and authentication
 - One-day economic snapshot
 - Alerts/threshold logic for extreme signals
