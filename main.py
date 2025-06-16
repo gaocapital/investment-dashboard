@@ -85,4 +85,4 @@ if __name__ == "__main__":
 
     # keep main process alive
     while True:
-        time.sleep(60)
+        time.sleep(999999999)
